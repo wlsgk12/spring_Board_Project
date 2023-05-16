@@ -41,10 +41,11 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(siteConfigInterceptor)
                 .addPathPatterns("/**");
     }
-    public MessageSource messageSource(){
+    @Bean
+    public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setDefaultEncoding("UTF-8");
-        ms.setBasenames("messages.commons","messages.validations","messages.errors");
+        ms.setBasenames("messages.commons", "messages.validations", "messages.errors");
 
         return ms;
     }
