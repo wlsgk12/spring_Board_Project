@@ -1,5 +1,7 @@
 package org.jinha.board.configs;
 
+import org.jinha.board.model.member.LoginFailureHandler;
+import org.jinha.board.model.member.LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,8 +20,8 @@ public class SecurityConfig {
                 .loginPage("/member/login")
                 .usernameParameter("userId")
                 .passwordParameter("userPw")
-                .defaultSuccessUrl("/")
-                .failureForwardUrl("/member/login")
+                .successHandler(new LoginSuccessHandler())
+                .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
