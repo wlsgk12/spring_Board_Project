@@ -1,6 +1,7 @@
 package org.jinha.board.model.member;
 
 import lombok.RequiredArgsConstructor;
+import org.jinha.board.commons.constants.Role;
 import org.jinha.board.controllers.members.JoinForm;
 import org.jinha.board.entities.Member;
 import org.jinha.board.repositories.MemberRepository;
@@ -19,6 +20,7 @@ public class MemberSaveService {
     private final PasswordEncoder passwordEncoder;
     public void save(JoinForm joinForm){
         Member member = new ModelMapper().map(joinForm, Member.class);
+        member.setRoles(Role.USER);
         member.setUserPw(passwordEncoder.encode(joinForm.getUserPw()));
 
         memberRepository.saveAndFlush(member);
