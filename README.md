@@ -20,6 +20,7 @@
 ## 3일차
 * 스프링 시큐리티 설정
   - 로그인 구현
+  - UserDetails, UserDetailsService 인터페이스 구현 클래스
 
 * 관리자 페이지
   - 기본 설정
