@@ -6,7 +6,9 @@ import org.jinha.board.entities.Member;
 import org.jinha.board.model.member.MemberInfo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberUtil {
 
     @Autowired
@@ -46,5 +48,4 @@ public class MemberUtil {
 
         return null;
     }
-
 }
