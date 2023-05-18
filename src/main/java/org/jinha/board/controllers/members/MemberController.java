@@ -1,5 +1,6 @@
 package org.jinha.board.controllers.members;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.jinha.board.model.member.MemberSaveService;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class MemberController {
         return "member/join";
     }
     @PostMapping("/join")
-    public String joinPs(JoinForm joinForm, Errors errors){
+    public String joinPs(@Valid JoinForm joinForm, Errors errors){
 
         joinValidator.validate(joinForm, errors);
 
