@@ -16,7 +16,7 @@ public class CommonController {
         int status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
         if (e instanceof CommonException) {
             CommonException commonException = (CommonException) e;
-            status = commonException.getHttpStatus().value();
+            status = commonException.getStatus().value();
         }
 
         response.setStatus(status);
@@ -26,6 +26,7 @@ public class CommonController {
         model.addAttribute("path",URL);
         model.addAttribute("message", e.getMessage());
         model.addAttribute("exception", e);
+        e.printStackTrace();
 
         return "error/common";
     }
