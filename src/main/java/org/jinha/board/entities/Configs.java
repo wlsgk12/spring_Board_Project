@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class Configs {
     @Id
+    @Column(length = 45)
     private String code;
     @Lob
     private String value;

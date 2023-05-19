@@ -56,3 +56,6 @@
      - 추후에 설정이 많이 추가됨을 고려
      - CodeValue 엔티티 code(PK) , value - JSON
    - 게시판 설정
+
+## 5일차
+   - 
