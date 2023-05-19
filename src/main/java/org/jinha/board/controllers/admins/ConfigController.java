@@ -26,7 +26,7 @@ public class ConfigController {
 //        if(configForm != null) {
 //            log.info(configForm.toString());
 //        }
-        model.addAttribute("configForm", configForm);
+        model.addAttribute("configForm", configForm == null?new ConfigForm() : configForm);
         return "admin/config";
     }
     @PostMapping
