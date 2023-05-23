@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jinha.board.commons.constants.Role;
 
-
 import java.util.Arrays;
 
 @Entity @Data @Builder
@@ -73,6 +72,10 @@ public class Board extends BaseMemberEntity {
 
     // 댓글 사용 여부
     private boolean useComment;
+
+    /** 비회원 작성, 수정 모드 여부 */
+    @Transient
+    private boolean isGuest;
 
     // 게시판 스킨
     @Column(length=20, nullable=false)

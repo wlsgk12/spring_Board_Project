@@ -23,10 +23,12 @@ import java.util.List;
 @RequestMapping("/admin/board")
 @RequiredArgsConstructor
 public class BoardController {
+
     private final HttpServletRequest request;
     private final BoardConfigSaveService configSaveService;
     private final BoardConfigInfoService boardConfigInfoService;
     private final BoardConfigListService boardConfigListService;
+
     /**
      * 게시판 목록
      *
@@ -47,10 +49,12 @@ public class BoardController {
      * @return
      */
     @GetMapping("/register")
-    public String register(@ModelAttribute BoardForm boardForm, Model model){
+    public String register(@ModelAttribute BoardForm boardForm, Model model) {
         commonProcess(model, "게시판 등록");
+
         return "admin/board/config";
     }
+
     @GetMapping("/{bId}/update")
     public String update(@PathVariable String bId, Model model) {
         commonProcess(model, "게시판 수정");
@@ -68,6 +72,7 @@ public class BoardController {
 
         return "admin/board/config";
     }
+
     @PostMapping("/save")
     public String save(@Valid BoardForm boardForm, Errors errors, Model model) {
         String mode = boardForm.getMode();
@@ -92,6 +97,9 @@ public class BoardController {
 
         // 서브 메뉴 처리
         String subMenuCode = Menus.getSubMenuCode(request);
+
+        subMenuCode = title.equals("게시판 수정") ? "register" : subMenuCode;
+
         model.addAttribute("subMenuCode", subMenuCode);
 
         List<MenuDetail> submenus = Menus.gets("board");

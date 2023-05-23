@@ -14,16 +14,18 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.ResourceBundle;
 
 @Configuration
 @RequiredArgsConstructor
 @EnableJpaAuditing
 public class MvcConfig implements WebMvcConfigurer {
+
     @Value("${file.upload.path}")
     private String fileUploadPath;
-    //사이트 설정 유지 인터셉터
+
+    // 사이트 설정 유지 인터셉터
     private final SiteConfigInterceptor siteConfigInterceptor;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
@@ -33,7 +35,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations("file:///"+fileUploadPath);
+                .addResourceLocations("file:///" + fileUploadPath);
     }
 
     @Override
@@ -41,6 +43,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(siteConfigInterceptor)
                 .addPathPatterns("/**");
     }
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
@@ -49,9 +52,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
         return ms;
     }
+
     @Bean
-    public HiddenHttpMethodFilter httpMethodFilter(){//GET, POST  외에 DELETE, PATCH, PUT ... 사용 가능하게 끔
+    public HiddenHttpMethodFilter httpMethodFilter() {  // GET, POST외에 DELETE, PATCH, PUT ....
+
+
         return new HiddenHttpMethodFilter();
     }
 }
-
